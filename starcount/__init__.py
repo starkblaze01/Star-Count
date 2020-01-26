@@ -1,0 +1,1 @@
+from .starcount import main()
