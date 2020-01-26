@@ -55,7 +55,7 @@ def final_result(output=''):
             star = ''
             for i in range(0, (2*max_repo_name_length - len(each_repo))):
                 star = star + "-"
-            print(colored('>', 'green'), each_repo, star,
+            print(colored('>', 'green'), each_repo, colored(star, 'green'),
                   sorted_output[each_repo], colored('*', 'yellow'))
     else:
         print('No Repository Found')

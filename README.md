@@ -23,3 +23,8 @@ Python Command Line tool to get total stargazers count of GitHub Repository of a
 ##### Note:
 - Number of API calls request is limited to 60/hr without auth token. With OAuth token it is 5000/hr. Know more about it [here](https://developer.github.com/v3/#rate-limiting).
 - Authentication using password is not used for this package because it will be depricated soon and not recommended. You can get your OAuth token from [here](https://github.com/settings/tokens) in case you hit your request limit.
+
+#### GIF
+Click [here](https://github.com/starkblaze01/Star-Count/starcount.gif)
+
+![](https://github.com/starkblaze01/Star-Count/starcount.gif)
