@@ -100,12 +100,12 @@ def main():
         opts, args = getopt.getopt(
             argv, "hu:t:n:a:", ["user_name=", "stars_count_threshold=", "num_repo=", "auth_token="])
     except getopt.GetoptError:
-        print('Usage: starcount -u <user_name> -t <stars_count_threshold> -n <num_repo> -a <auth_token>')
+        print('Usage: starcount -u <user_name> -t <stars_count_threshold_per_repo> -n <num_repo_to_show> -a <auth_token>')
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
             print(
-                'Usage: starcount -u <user_name> -t <stars_count_threshold> -n <num_repo> -a <auth_token>')
+                'Usage: starcount -u <user_name> -t <stars_count_threshold_per_repo> -n <num_repo_to_show> -a <auth_token>')
             sys.exit()
         elif opt in ('-u', '--user_name'):
             username = arg.strip()
