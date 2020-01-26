@@ -1,1 +1,1 @@
-from .starcount import main()
+from .starcount import main
