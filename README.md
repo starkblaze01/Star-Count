@@ -25,6 +25,6 @@ Python Command Line tool to get total stargazers count of GitHub Repository of a
 - Authentication using password is not used for this package because it will be depricated soon and not recommended. You can get your OAuth token from [here](https://github.com/settings/tokens) in case you hit your request limit.
 
 #### GIF
-Click [here](https://github.com/starkblaze01/Star-Count/starcount.gif)
+Click [here](https://github.com/starkblaze01/Star-Count/blob/master/starcount.gif)
 
-![](https://github.com/starkblaze01/Star-Count/starcount.gif)
+![](https://github.com/starkblaze01/Star-Count/blob/master/starcount.gif)
