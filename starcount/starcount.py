@@ -7,14 +7,13 @@ from collections import OrderedDict
 from termcolor import colored
 
 username = ''
-your_username = False
 stars_count_threshold = ''
 num_repo = ''
-password = False
+auth_token = False
 
 
 def final_result(output=''):
-    global username, stars_count_threshold, num_repo, password, your_username
+    global stars_count_threshold, num_repo
     unsorted_output = {}
     total_stars = 0
     max_repo_name_length = 0
@@ -64,27 +63,27 @@ def final_result(output=''):
 
 
 def get_repo_data():
-    global username, stars_count_threshold, num_repo, password, your_username
+    global username, auth_token
     base_url = 'https://api.github.com/users/'
     headers = {'Content-Type': 'application/json',
                'User-Agent': 'Repositories Star Count',
                'Accept': 'application/vnd.github.v3+json'}
+    if auth_token:
+        headers['Authorization'] = 'token ' + auth_token
     repo_data = []
-    auth = (your_username, password) if password and your_username else None
-    # print(auth)
 
-    num_repos = requests.get(base_url+username, headers=headers, auth=auth)
+    num_repos = requests.get(base_url+username, headers=headers)
     if num_repos.status_code == 200:
         repo_count = num_repos.json()['public_repos']
     else:
         print('[!] HTTP {0} calling [{1}]'.format(
-            response.status_code, base_url+username))
+            num_repos.status_code, base_url+username))
         sys.exit()
 
     num_pages = (int(repo_count) // 100) + 1
     for i in range(0, num_pages):
         response = requests.get(base_url+username+'/repos?per_page=100&page='+str(i+1),
-                                headers=headers, auth=auth)
+                                headers=headers)
         if response.status_code == 200:
             repo_data.extend(response.json())
         else:
@@ -96,17 +95,17 @@ def get_repo_data():
 
 def main():
     argv = sys.argv[1:]
-    global username, stars_count_threshold, num_repo, password, your_username
+    global username, stars_count_threshold, num_repo, auth_token
     try:
         opts, args = getopt.getopt(
-            argv, "hu:t:n:a:", ["user_name=", "stars_count_threshold=", "num_repo=", "your_username:password="])
+            argv, "hu:t:n:a:", ["user_name=", "stars_count_threshold=", "num_repo=", "auth_token="])
     except getopt.GetoptError:
-        print('Usage: starcount -u <user_name> -t <stars_count_threshold> -n <num_repo> -a <your_username:password>')
+        print('Usage: starcount -u <user_name> -t <stars_count_threshold> -n <num_repo> -a <auth_token>')
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
             print(
-                'Usage: starcount -u <user_name> -t <stars_count_threshold> -n <num_repo> -a <your_username:password>')
+                'Usage: starcount -u <user_name> -t <stars_count_threshold> -n <num_repo> -a <auth_token>')
             sys.exit()
         elif opt in ('-u', '--user_name'):
             username = arg.strip()
@@ -114,9 +113,9 @@ def main():
             stars_count_threshold = int(arg.strip())
         elif opt in ('-n', '--num_repo'):
             num_repo = int(arg.strip())
-        elif opt in ('-a', '--your_username:password'):
-            your_username = arg.split(':', 1)[0].strip()
-            password = arg.split(':', 1)[1].strip()
+        elif opt in ('-a', '--auth_token'):
+            auth_token = arg.strip()
+
     if num_repo != '' and num_repo < 0:
         print('Number of repositories should be greater than 0')
         sys.exit()
