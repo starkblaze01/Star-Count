@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="starcount",
-    version="0.0.1",
+    version="0.0.2",
     author="starkblaze01",
     author_email="mp.pathela@gmail.com",
     description="Command Line tool to get total stargazers count of GitHub Repository of any user.",
@@ -16,7 +16,7 @@ setuptools.setup(
     url="https://github.com/starkblaze01/Star-Count",
     packages=setuptools.find_packages(),
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Production/Stable",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
