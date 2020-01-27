@@ -1,5 +1,6 @@
 # [Star-Count](https://github.com/starkblaze01/Star-Count)
 [![PyPI version](https://badge.fury.io/py/starcount.svg)](https://badge.fury.io/py/starcount)
+[![Downloads](https://pepy.tech/badge/starcount)](https://pepy.tech/project/starcount)
 
 Python Command Line tool to get total stargazers count of GitHub Repository of any user.
 
